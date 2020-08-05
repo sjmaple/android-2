@@ -22,8 +22,6 @@
 
 package com.nextcloud.client;
 
-import android.Manifest;
-
 import com.owncloud.android.AbstractIT;
 import com.owncloud.android.R;
 import com.owncloud.android.ui.activity.FileDisplayActivity;
@@ -34,7 +32,6 @@ import org.junit.Test;
 
 import androidx.test.espresso.contrib.DrawerActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
-import androidx.test.rule.GrantPermissionRule;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -43,10 +40,6 @@ public class FileDisplayActivityScreenshotIT extends AbstractIT {
     @Rule public IntentsTestRule<FileDisplayActivity> activityRule = new IntentsTestRule<>(FileDisplayActivity.class,
                                                                                            true,
                                                                                            false);
-
-    @Rule
-    public final GrantPermissionRule permissionRule = GrantPermissionRule.grant(
-        Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
     @Test
     @ScreenshotTest
