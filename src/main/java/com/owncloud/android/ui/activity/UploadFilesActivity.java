@@ -104,6 +104,7 @@ public class UploadFilesActivity extends DrawerActivity implements LocalFileList
     private Menu mOptionsMenu;
     private SearchView mSearchView;
     private Spinner mBehaviourSpinner;
+    private MaterialButton uploadButton;
 
     /**
      * Helper to launch the UploadFilesActivity for which you would like a result when it finished. Your
@@ -174,9 +175,10 @@ public class UploadFilesActivity extends DrawerActivity implements LocalFileList
         cancelButton.setTextColor(ThemeUtils.primaryColor(this, true));
         cancelButton.setOnClickListener(this);
 
-        MaterialButton uploadButton = findViewById(R.id.upload_files_btn_upload);
+        uploadButton = findViewById(R.id.upload_files_btn_upload);
         ThemeUtils.colorPrimaryButton(uploadButton, this);
         uploadButton.setOnClickListener(this);
+        uploadButton.setEnabled(false);
 
         int localBehaviour = preferences.getUploaderBehaviour();
 
@@ -541,7 +543,7 @@ public class UploadFilesActivity extends DrawerActivity implements LocalFileList
      */
     @Override
     public void onFileClick(File file) {
-        // nothing to do
+        uploadButton.setEnabled(mFileListFragment.getCheckedFilesCount() > 0);
     }
 
     /**
