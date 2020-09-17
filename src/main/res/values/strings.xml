@@ -949,4 +949,5 @@
     <string name="player_toggle">toggle</string>
     <string name="in_folder">in folder %1$s</string>
     <string name="choose_which_file">Choose which file to keep!</string>
+    <string name="search_error">Error getting search results</string>
 </resources>
