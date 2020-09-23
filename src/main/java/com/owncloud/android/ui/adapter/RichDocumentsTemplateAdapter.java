@@ -139,8 +139,8 @@ public class RichDocumentsTemplateAdapter extends RecyclerView.Adapter<RichDocum
                     break;
             }
 
-            Glide.with(context).using(new CustomGlideStreamLoader(currentAccountProvider, clientFactory)).
-                load(template.getThumbnailLink())
+            Glide.with(context).using(new CustomGlideStreamLoader(currentAccountProvider.getUser(), clientFactory))
+                .load(template.getThumbnailLink())
                 .placeholder(placeholder)
                 .error(placeholder)
                 .into(thumbnail);
