@@ -1,3 +1,11 @@
+## 3.14.1 RC1 (November, 23, 2020)
+
+Fix crash due to service not started in time
+Fix UI while media playback
+Fix uploading direct camera images with more than one picture
+
+For a full list, please see https://github.com/nextcloud/android/milestone/53
+
 ## 3.14.0 RC2 (November, 10, 2020)
 
 Prevent Firebase crashes: Exodus will warn about tracker, but code wise it is disabled
