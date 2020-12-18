@@ -474,3 +474,7 @@ detekt {
     config = files("detekt.yml")
     input = files("src/")
 }
+
+shot {
+    showOnlyFailingTestsInReports = true
+}
