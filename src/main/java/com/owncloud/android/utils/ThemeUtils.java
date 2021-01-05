@@ -398,17 +398,34 @@ public final class ThemeUtils {
 
     public static void colorPrimaryButton(Button button, Context context) {
         int primaryColor = ThemeUtils.primaryColor(null, true, false, context);
-        int fontColor = ThemeUtils.fontColor(context, false);
+        int disabledColor = ContextCompat.getColor(context, R.color.disabled_button_background);
 
-        button.setBackgroundColor(primaryColor);
-
+        int textColor;
         if (Color.BLACK == primaryColor) {
-            button.setTextColor(Color.WHITE);
+            textColor = Color.WHITE;
         } else if (Color.WHITE == primaryColor) {
-            button.setTextColor(Color.BLACK);
+            textColor = Color.BLACK;
         } else {
-            button.setTextColor(fontColor);
+            textColor = ThemeUtils.fontColor(context, false);
         }
+        int disabledTextColor = ContextCompat.getColor(context, R.color.disabled_button_text);
+
+        button.setBackgroundTintList(getColorStateList(primaryColor, disabledColor));
+
+        button.setTextColor(getColorStateList(textColor, disabledTextColor));
+    }
+
+    private static ColorStateList getColorStateList(int primaryColor, int disabledColor) {
+        return new ColorStateList(
+            new int[][]{
+                new int[]{android.R.attr.state_enabled}, // enabled
+                new int[]{-android.R.attr.state_enabled}, // disabled
+            },
+            new int[]{
+                primaryColor,
+                disabledColor
+            }
+        );
     }
 
     /**
@@ -548,16 +565,7 @@ public final class ThemeUtils {
         Context context = button.getContext();
         int accentColor = ThemeUtils.primaryAccentColor(button.getContext());
         int disabledColor = ContextCompat.getColor(context, R.color.disabled_text);
-        button.setTextColor(new ColorStateList(
-            new int[][]{
-                new int[]{android.R.attr.state_enabled}, // enabled
-                new int[]{-android.R.attr.state_enabled}, // disabled
-            },
-            new int[]{
-                accentColor,
-                disabledColor
-            }
-        ));
+        button.setTextColor(getColorStateList(accentColor, disabledColor));
     }
 
     public static void themeEditText(Context context, EditText editText, boolean themedBackground) {
