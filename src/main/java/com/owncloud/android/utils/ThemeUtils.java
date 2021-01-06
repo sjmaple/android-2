@@ -415,6 +415,23 @@ public final class ThemeUtils {
         button.setTextColor(getColorStateList(textColor, disabledTextColor));
     }
 
+    public static void colorSecondaryButton(MaterialButton button, Context context) {
+        button.setTextColor(ThemeUtils.primaryColor(context, true));
+        ColorStateList ripple = getRippleColorStateList(context);
+        button.setRippleColor(ripple);
+    }
+
+    private static ColorStateList getRippleColorStateList(Context context) {
+        return new ColorStateList(
+                new int[][]{
+                    new int[]{}
+                },
+                new int[]{
+                    ThemeUtils.primaryColor(context, true)
+                }
+            );
+    }
+
     private static ColorStateList getColorStateList(int primaryColor, int disabledColor) {
         return new ColorStateList(
             new int[][]{
