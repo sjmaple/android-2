@@ -396,6 +396,12 @@ public final class ThemeUtils {
         return hsl;
     }
 
+    /**
+     * colorize primary button while taking care of edge case colors for button texts.
+     *
+     * @param button  the button to be colored
+     * @param context the context
+     */
     public static void colorPrimaryButton(Button button, Context context) {
         int primaryColor = ThemeUtils.primaryColor(null, true, false, context);
         int disabledColor = ContextCompat.getColor(context, R.color.disabled_button_background);
@@ -408,13 +414,19 @@ public final class ThemeUtils {
         } else {
             textColor = ThemeUtils.fontColor(context, false);
         }
-        int disabledTextColor = ContextCompat.getColor(context, R.color.disabled_button_text);
 
         button.setBackgroundTintList(getColorStateList(primaryColor, disabledColor));
-
-        button.setTextColor(getColorStateList(textColor, disabledTextColor));
+        button.setTextColor(
+            getColorStateList(textColor, ContextCompat.getColor(context, R.color.disabled_button_text))
+        );
     }
 
+    /**
+     * colorize secondary button.
+     *
+     * @param button  the button to be colored
+     * @param context the context
+     */
     public static void colorSecondaryButton(MaterialButton button, Context context) {
         button.setTextColor(ThemeUtils.primaryColor(context, true));
         ColorStateList ripple = getRippleColorStateList(context);
@@ -423,13 +435,13 @@ public final class ThemeUtils {
 
     private static ColorStateList getRippleColorStateList(Context context) {
         return new ColorStateList(
-                new int[][]{
-                    new int[]{}
-                },
-                new int[]{
-                    ThemeUtils.primaryColor(context, true)
-                }
-            );
+            new int[][]{
+                new int[]{}
+            },
+            new int[]{
+                ThemeUtils.primaryColor(context, true)
+            }
+        );
     }
 
     private static ColorStateList getColorStateList(int primaryColor, int disabledColor) {
@@ -446,9 +458,10 @@ public final class ThemeUtils {
     }
 
     /**
-     * sets the tinting of the given ImageButton's icon to color_accent.
+     * sets the tinting of the given ImageButton's icon to given color.
      *
      * @param imageButton the image button who's icon should be colored
+     * @param color       the color to be used
      */
     public static void colorImageButton(ImageButton imageButton, @ColorInt int color) {
         if (imageButton != null) {
