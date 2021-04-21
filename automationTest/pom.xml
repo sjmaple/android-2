@@ -45,12 +45,12 @@
     </dependency>
     <dependency>
         <groupId>io.selendroid</groupId>
-        <version>0.9.0</version>
+        <version>0.15.0</version>
         <artifactId>selendroid-standalone</artifactId>
     </dependency>
     <dependency>
         <groupId>io.selendroid</groupId>
-        <version>0.9.0</version>
+        <version>0.15.0</version>
         <artifactId>selendroid-client</artifactId>
     </dependency>
     <dependency>
